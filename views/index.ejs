@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% if (locals.categories) { %>
+    <ul>
+      <% for (let category of categories){ %>
+      <li>
+        <div>
+          <%= category.name %>
+          <div>
+            <a href="<%= category.id %>/categories">Open</a>
+          </div>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+    <% } %>
+  </body>
+</html>

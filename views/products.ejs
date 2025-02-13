@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% if (locals.products) { %>
+    <table>
+      <thead>
+        <th>#</th>
+        <th>Product</th>
+        <th>In Stock</th>
+        <th>Unit Price</th>
+        <th>Added</th>
+      </thead>
+      <tbody>
+        <% for( let n = 1; n <= products.length; n++ ) { %>
+        <tr>
+          <td><%= n %></td>
+          <td><%= products[n - 1].name %></td>
+          <td><%= products[n - 1]['in_stock'] %></td>
+          <td><%= products[n - 1]['unit_price'] %></td>
+          <td><%= products[n - 1].added %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% } %>
+    <a href="/">Back to home</a>
+  </body>
+</html>
