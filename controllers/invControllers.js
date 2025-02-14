@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import {
   getAllCategories,
   getCategoryName,
@@ -15,8 +16,11 @@ const productCategoriesGet = async (req, res) => {
 const categoryProductsGet = async (req, res) => {
   const { id } = req.params;
   const [{ name }] = await getCategoryName(id);
-  const products = await getCategoryProducts(id);
-
+  const productList = await getCategoryProducts(id);
+  const products = productList.map((product) => ({
+    ...product,
+    added: format(product.added, "yyyy-MM-dd"),
+  }));
   res.render("products", {
     title: name,
     products,
