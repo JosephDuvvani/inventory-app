@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import {
   getAllCategories,
+  getAllProducts,
   getCategoryName,
   getCategoryProducts,
   getRecentlyAdded,
@@ -37,4 +38,16 @@ const categoryProductsGet = async (req, res) => {
   });
 };
 
-export { productCategoriesGet, categoryProductsGet };
+const allProductsGet = async (req, res) => {
+  const all = await getAllProducts();
+  const products = all.map((product) => ({
+    ...product,
+    added: format(product.added, "yyyy-MM-dd"),
+  }));
+  res.render("products", {
+    title: "ALL PRODUCTS",
+    products,
+  });
+};
+
+export { productCategoriesGet, categoryProductsGet, allProductsGet };

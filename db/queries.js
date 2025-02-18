@@ -46,10 +46,20 @@ const getRecentlyAdded = async () => {
   return rows;
 };
 
+const getAllProducts = async () => {
+  const { rows } = await pool.query(`
+      SELECT products.name, performance, categories.name AS category, in_stock, unit_price, added FROM products 
+      JOIN product_categories ON products.id = product_id 
+      JOIN categories ON categories.id = category_id;
+    `);
+  return rows;
+};
+
 export {
   getAllCategories,
   getCategoryProducts,
   getCategoryName,
   getTopSellingByUnits,
   getRecentlyAdded,
+  getAllProducts,
 };
