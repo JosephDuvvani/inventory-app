@@ -3,13 +3,23 @@ import {
   getAllCategories,
   getCategoryName,
   getCategoryProducts,
+  getRecentlyAdded,
+  getTopSellingByUnits,
 } from "../db/queries.js";
 
 const productCategoriesGet = async (req, res) => {
   const categories = await getAllCategories();
+  const topUnits = await getTopSellingByUnits();
+  const recently = await getRecentlyAdded();
+  const recentlyAdded = recently.map((prod) => ({
+    ...prod,
+    added: format(prod.added, "d MMM yyyy"),
+  }));
   res.render("index", {
     title: "All Categories",
     categories,
+    topUnits,
+    recentlyAdded,
   });
 };
 
