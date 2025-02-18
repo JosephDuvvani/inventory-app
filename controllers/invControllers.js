@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import {
   addNewProduct,
+  createCategory,
   getAllCategories,
   getAllProducts,
   getCategoryName,
@@ -22,6 +23,13 @@ const productCategoriesGet = async (req, res) => {
     categories,
     topUnits,
     recentlyAdded,
+  });
+};
+
+const allCategoriesGet = async (req, res) => {
+  const categories = await getAllCategories();
+  res.render("categories", {
+    categories,
   });
 };
 
@@ -62,10 +70,17 @@ const newProductPost = async (req, res) => {
   res.redirect("/");
 };
 
+const newCategoryPost = async (req, res) => {
+  await createCategory(req.body);
+  res.redirect("/categories");
+};
+
 export {
   productCategoriesGet,
   categoryProductsGet,
   allProductsGet,
   newProductGet,
   newProductPost,
+  allCategoriesGet,
+  newCategoryPost,
 };

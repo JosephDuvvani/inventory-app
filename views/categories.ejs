@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/category.css" />
+    <link rel="stylesheet" href="forms.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('sidebar') %>
+      <main class="pad-r-1">
+        <div class="cate-header">
+          <h3 class="page-title">Categories</h3>
+          <button class="new-category-btn">New Category</button>
+        </div>
+        <section class="category-form-section hide">
+          <form action="/categories" method="POST" class="new-category">
+            <label>
+              Category Name:
+              <input type="text" name="name" autocomplete="off" required />
+            </label>
+            <div class="form-btns">
+              <button class="form-btn">Create Category</button>
+              <button type="button" class="close-new-category">Close</button>
+            </div>
+          </form>
+        </section>
+        <section class="categories">
+          <% if (locals.categories) { %>
+          <ul class="category-list">
+            <% for (let category of categories){ %>
+            <li>
+              <div class="category-card">
+                <div class="category-title"><%= category.name %></div>
+                <div class="category-overlay">
+                  <a href="<%= category.id %>/categories">View Products</a>
+                </div>
+              </div>
+            </li>
+            <% } %>
+          </ul>
+          <% } %>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const inventoryDropdown = document.getElementById("inventory-dropdown");
+      const ordersDropdown = document.getElementById("orders-dropdown");
+      const toggleDropdown = (e) => {
+        if (!e.target.dataset.dropitem) return;
+        const list = document.getElementById(e.target.dataset.dropitem);
+        list.classList.toggle("collapse");
+        e.target.lastElementChild.classList.toggle("flip-up");
+      };
+
+      inventoryDropdown.addEventListener("click", toggleDropdown);
+      ordersDropdown.addEventListener("click", toggleDropdown);
+
+      const newCategoryBtn = document.querySelector(".new-category-btn");
+      const newCategoryForm = document.querySelector(".category-form-section");
+      const newCategoryClose = document.querySelector(".close-new-category");
+
+      newCategoryBtn.addEventListener("click", () => {
+        newCategoryForm.classList.toggle("hide", false);
+      });
+      newCategoryClose.addEventListener("click", () => {
+        newCategoryForm.classList.toggle("hide", true);
+      });
+    </script>
+  </body>
+</html>

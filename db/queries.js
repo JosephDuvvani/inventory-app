@@ -72,6 +72,12 @@ const addNewProduct = async ({ name, quantity, price, category }) => {
     `);
 };
 
+const createCategory = async ({ name }) => {
+  await pool.query(`
+      INSERT INTO categories (name) VALUES ('${name}');
+    `);
+};
+
 export {
   getAllCategories,
   getCategoryProducts,
@@ -80,4 +86,5 @@ export {
   getRecentlyAdded,
   getAllProducts,
   addNewProduct,
+  createCategory,
 };

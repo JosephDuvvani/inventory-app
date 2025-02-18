@@ -1,0 +1,40 @@
+.cate-header,
+.form-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.new-category {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--fc-light);
+    border-radius: 4px;
+}
+
+.new-category-btn,
+.close-new-category  {
+    padding: .5rem 1rem;
+    font-size: inherit;
+    border: 0;
+    border-radius: 4px;
+    color: var(--fc-light);
+    background-color: var(--neon-purple);
+}
+
+.new-category-btn:hover {
+    background-color: hsl(258, 90%, 60%);
+}
+
+.close-new-category {
+    background-color: var(--alert-red);
+}
+
+.close-new-category:hover {
+    background-color: hsl(0, 84%, 50%);
+}
