@@ -3,6 +3,7 @@ import { productCategoriesGet } from "./controllers/invControllers.js";
 import { configDotenv } from "dotenv";
 import { categoryRouter } from "./routes/categoryRouter.js";
 import path from "path";
+import { newProductRouter } from "./routes/formRouter.js";
 
 configDotenv();
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", productCategoriesGet);
 
 app.use("/", categoryRouter);
+app.use("/add", newProductRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

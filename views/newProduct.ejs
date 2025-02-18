@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/forms.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('sidebar') %>
+      <main class="pad-r-1">
+        <h3 class="page-title">Add New Product</h3>
+        <div class="form-container">
+          <form action="/add/product" method="POST" class="new-product">
+            <label for="name">
+              Product Name:
+              <input
+                type="text"
+                name="name"
+                id="name"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <label for="quantity">
+              Quantity:
+              <input type="number" name="quantity" id="quantity" required />
+            </label>
+            <label for="price">
+              Price: <input type="number" name="price" id="price" required />
+            </label>
+            <% if (locals.categories) { %>
+            <label for="category">
+              Categories:
+              <select name="category" id="category">
+                <% for (let category of categories){ %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+                <% } %>
+              </select>
+            </label>
+            <% } %>
+            <button class="form-btn">Add Product</button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const inventoryDropdown = document.getElementById("inventory-dropdown");
+      const ordersDropdown = document.getElementById("orders-dropdown");
+      const toggleDropdown = (e) => {
+        if (!e.target.dataset.dropitem) return;
+        const list = document.getElementById(e.target.dataset.dropitem);
+        list.classList.toggle("collapse");
+        e.target.lastElementChild.classList.toggle("flip-up");
+      };
+
+      inventoryDropdown.addEventListener("click", toggleDropdown);
+      ordersDropdown.addEventListener("click", toggleDropdown);
+    </script>
+  </body>
+</html>

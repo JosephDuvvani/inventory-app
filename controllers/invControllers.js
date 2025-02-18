@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import {
+  addNewProduct,
   getAllCategories,
   getAllProducts,
   getCategoryName,
@@ -50,4 +51,21 @@ const allProductsGet = async (req, res) => {
   });
 };
 
-export { productCategoriesGet, categoryProductsGet, allProductsGet };
+const newProductGet = async (req, res) => {
+  const categories = await getAllCategories();
+  res.render("newProduct", { categories });
+};
+
+const newProductPost = async (req, res) => {
+  const data = req.body;
+  await addNewProduct(data);
+  res.redirect("/");
+};
+
+export {
+  productCategoriesGet,
+  categoryProductsGet,
+  allProductsGet,
+  newProductGet,
+  newProductPost,
+};

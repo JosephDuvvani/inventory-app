@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { pool } from "./pool.js";
 
 const getAllCategories = async () => {
@@ -55,6 +56,22 @@ const getAllProducts = async () => {
   return rows;
 };
 
+const addNewProduct = async ({ name, quantity, price, category }) => {
+  const { rows } = await pool.query(`
+      SELECT MAX(id) FROM products;
+    `);
+  const newId = rows[0].max + 1;
+  await pool.query(`
+      INSERT INTO products (name, in_stock, unit_price, added) 
+      VALUES 
+      ('${name}', ${quantity}, ${price}, '${format(new Date(), "yyyy-MM-dd")}');
+    `);
+  await pool.query(`
+      INSERT INTO product_categories (product_id, category_id) 
+      VALUES (${newId}, ${category});
+    `);
+};
+
 export {
   getAllCategories,
   getCategoryProducts,
@@ -62,4 +79,5 @@ export {
   getTopSellingByUnits,
   getRecentlyAdded,
   getAllProducts,
+  addNewProduct,
 };
