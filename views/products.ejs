@@ -1,31 +1,59 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if (locals.products) { %>
-    <table>
-      <thead>
-        <th>#</th>
-        <th>Product</th>
-        <th>In Stock</th>
-        <th>Unit Price</th>
-        <th>Added</th>
-      </thead>
-      <tbody>
-        <% for( let n = 1; n <= products.length; n++ ) { %>
-        <tr>
-          <td><%= n %></td>
-          <td><%= products[n - 1].name %></td>
-          <td><%= products[n - 1]['in_stock'] %></td>
-          <td><%= products[n - 1]['unit_price'] %></td>
-          <td><%= products[n - 1].added %></td>
-        </tr>
+    <div class="container">
+      <%- include('sidebar') %>
+      <main class="pad-r-1">
+        <h1 class="page-title"><%= title %></h1>
+        <% if (locals.products) { %>
+        <table class="table_dashbrd table-bg-light table-container">
+          <thead>
+            <th>#</th>
+            <th>Product</th>
+            <th>Performance</th>
+            <th>In Stock</th>
+            <th>Unit Price</th>
+            <th>Added</th>
+          </thead>
+          <tbody>
+            <% for( let n = 1; n <= products.length; n++ ) { %>
+            <tr>
+              <td><%= n %></td>
+              <td><%= products[n - 1].name %></td>
+              <td><%= products[n - 1].performance %></td>
+              <td><%= products[n - 1]['in_stock'] %></td>
+              <td><%= products[n - 1]['unit_price'] %></td>
+              <td><%= products[n - 1].added %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
         <% } %>
-      </tbody>
-    </table>
-    <% } %>
-    <a href="/">Back to home</a>
+        <a href="/" class="clr-logo_accent to-home">Back to home</a>
+      </main>
+    </div>
+
+    <script>
+      const inventoryDropdown = document.getElementById("inventory-dropdown");
+      const ordersDropdown = document.getElementById("orders-dropdown");
+      const toggleDropdown = (e) => {
+        if (!e.target.dataset.dropitem) return;
+        const list = document.getElementById(e.target.dataset.dropitem);
+        list.classList.toggle("collapse");
+        e.target.lastElementChild.classList.toggle("flip-up");
+      };
+
+      inventoryDropdown.addEventListener("click", toggleDropdown);
+      ordersDropdown.addEventListener("click", toggleDropdown);
+    </script>
   </body>
 </html>

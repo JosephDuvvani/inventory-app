@@ -1,0 +1,127 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <h2>VE<span class="clr-logo_accent">NT</span>OR</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li>
+          <a href="/" class="nav-link">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"
+                />
+              </svg>
+            </span>
+            <h3>Dashboard</h3>
+          </a>
+        </li>
+        <li>
+          <div
+            class="nav-item-title"
+            id="inventory-dropdown"
+            data-dropitem="inventory"
+          >
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M7,7H17V5H19V19H5V5H7V7M7.5,13.5L9,12L11,14L15.5,9.5L17,11L11,17L7.5,13.5Z"
+                />
+              </svg>
+            </span>
+            <h3>Inventory</h3>
+            <button class="strip-btn">
+              <span class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <ul class="nav-sublist collapse" id="inventory">
+            <li>
+              <a href="#" class="subnav-link"><h3>View All Products</h3></a>
+            </li>
+            <li>
+              <a href="#" class="subnav-link"><h3>Add New Product</h3></a>
+            </li>
+            <li>
+              <a href="#" class="subnav-link"><h3>Categories</h3></a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div
+            class="nav-item-title"
+            id="orders-dropdown"
+            data-dropitem="orders"
+          >
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M240-80q-50 0-85-35t-35-85v-120h120v-560l60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60v680q0 50-35 85t-85 35H240Zm480-80q17 0 28.5-11.5T760-200v-560H320v440h360v120q0 17 11.5 28.5T720-160ZM360-600v-80h240v80H360Zm0 120v-80h240v80H360Zm320-120q-17 0-28.5-11.5T640-640q0-17 11.5-28.5T680-680q17 0 28.5 11.5T720-640q0 17-11.5 28.5T680-600Zm0 120q-17 0-28.5-11.5T640-520q0-17 11.5-28.5T680-560q17 0 28.5 11.5T720-520q0 17-11.5 28.5T680-480ZM240-160h360v-80H200v40q0 17 11.5 28.5T240-160Zm-40 0v-80 80Z"
+                />
+              </svg>
+            </span>
+            <h3>Orders & Sales</h3>
+            <button class="strip-btn">
+              <span class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <ul class="nav-sublist collapse" id="orders">
+            <li>
+              <a href="#" class="subnav-link"><h3>Recent Orders</h3></a>
+            </li>
+            <li>
+              <a href="#" class="subnav-link"><h3>Sales Report</h3></a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M21.71 8.71C22.96 7.46 22.39 6 21.71 5.29L18.71 2.29C17.45 1.04 16 1.61 15.29 2.29L13.59 4H11C9.1 4 8 5 7.44 6.15L3 10.59V14.59L2.29 15.29C1.04 16.55 1.61 18 2.29 18.71L5.29 21.71C5.83 22.25 6.41 22.45 6.96 22.45C7.67 22.45 8.32 22.1 8.71 21.71L11.41 19H15C16.7 19 17.56 17.94 17.87 16.9C19 16.6 19.62 15.74 19.87 14.9C21.42 14.5 22 13.03 22 12V9H21.41L21.71 8.71M20 12C20 12.45 19.81 13 19 13L18 13L18 14C18 14.45 17.81 15 17 15L16 15L16 16C16 16.45 15.81 17 15 17H10.59L7.31 20.28C7 20.57 6.82 20.4 6.71 20.29L3.72 17.31C3.43 17 3.6 16.82 3.71 16.71L5 15.41V11.41L7 9.41V11C7 12.21 7.8 14 10 14S13 12.21 13 11H20V12M20.29 7.29L18.59 9H11V11C11 11.45 10.81 12 10 12S9 11.45 9 11V8C9 7.54 9.17 6 11 6H14.41L16.69 3.72C17 3.43 17.18 3.6 17.29 3.71L20.28 6.69C20.57 7 20.4 7.18 20.29 7.29Z"
+                />
+              </svg>
+            </span>
+            <h3>Supliers</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M3,22V8H7V22H3M10,22V2H14V22H10M17,22V14H21V22H17Z" />
+              </svg>
+            </span>
+            <h3>Analytics</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+                />
+              </svg>
+            </span>
+            <h3>Settings</h3>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
