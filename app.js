@@ -3,7 +3,11 @@ import { productCategoriesGet } from "./controllers/invControllers.js";
 import { configDotenv } from "dotenv";
 import { categoryRouter } from "./routes/categoryRouter.js";
 import path from "path";
-import { newProductRouter } from "./routes/formRouter.js";
+import {
+  deleteProductRouter,
+  editProductRouter,
+  newProductRouter,
+} from "./routes/formRouter.js";
 
 configDotenv();
 
@@ -20,7 +24,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.get("/", productCategoriesGet);
 
-app.use("/", categoryRouter);
+app.use("/", categoryRouter, editProductRouter, deleteProductRouter);
 app.use("/add", newProductRouter);
 
 const PORT = process.env.PORT || 3000;

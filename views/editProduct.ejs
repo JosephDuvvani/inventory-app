@@ -1,0 +1,63 @@
+<% if (locals.product) { %>
+<div class="edit-product hide" id="edit-<%= product.id %>">
+  <form action="/product/edit/<%= product.id %>" method="POST">
+    <label>
+      Product Name:
+      <input type="text" name="name" value="<%= product.name %>" />
+    </label>
+    <label>
+      Performance:
+      <input
+        type="number"
+        name="performance"
+        value="<%= product.performance %>"
+      />
+    </label>
+    <% if (locals.categories) { %>
+    <label for="category">
+      Categories:
+      <select name="category" id="category">
+        <% for (let category of categories){ %> <% if (category.name ==
+        product.category) { %>
+        <option value="<%= category.id %>" selected>
+          <%= category.name %>
+        </option>
+        <% } else { %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+        <% } %> <% } %>
+      </select>
+    </label>
+    <% } %>
+    <label for="quantity">
+      Quantity:
+      <input
+        type="number"
+        name="quantity"
+        id="quantity"
+        value="<%= product['in_stock'] %>"
+        required
+      />
+    </label>
+    <label for="price">
+      Price:
+      <input
+        type="number"
+        name="price"
+        id="price"
+        value="<%= product['unit_price'] %>"
+        required
+      />
+    </label>
+    <div class="form-btns">
+      <button class="form-btn">Save</button>
+      <button
+        type="button"
+        class="form-btn cancel-btn"
+        data-edit="<%=  product.id %>"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<% } %>

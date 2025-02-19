@@ -49,7 +49,7 @@ const getRecentlyAdded = async () => {
 
 const getAllProducts = async () => {
   const { rows } = await pool.query(`
-      SELECT products.name, performance, categories.name AS category, in_stock, unit_price, added FROM products 
+      SELECT products.id, products.name, performance, categories.name AS category, in_stock, unit_price, added FROM products 
       JOIN product_categories ON products.id = product_id 
       JOIN categories ON categories.id = category_id;
     `);
@@ -78,6 +78,28 @@ const createCategory = async ({ name }) => {
     `);
 };
 
+const editProduct = async (
+  id,
+  { name, performance, quantity, price, category }
+) => {
+  await pool.query(`
+      UPDATE products 
+        SET name='${name}', performance=${performance}, in_stock=${quantity}, unit_price=${price} 
+      WHERE id=${id};
+    `);
+  await pool.query(`
+      UPDATE product_categories 
+        SET category_id=${category} 
+      WHERE product_id=${id};
+    `);
+};
+
+const deleteProduct = async (id) => {
+  await pool.query(`
+      Delete From products WHERE id=${id};
+    `);
+};
+
 export {
   getAllCategories,
   getCategoryProducts,
@@ -87,4 +109,6 @@ export {
   getAllProducts,
   addNewProduct,
   createCategory,
+  editProduct,
+  deleteProduct,
 };

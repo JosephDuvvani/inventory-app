@@ -16,14 +16,35 @@ button {
 label {
     display: grid;
     gap: .5rem;
-    color: hsl(0, 0%, 40%);
+    color: hsl(0, 0%, 30%);
 }
 
 input,
 select {
     font-size: inherit;
     padding: .5rem;
-    border: 1px solid var(--fc-gray);
+    border: 2px solid var(--fc-gray);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border: 2px solid var(--neon-purple);
+}
+
+.edit-product {
+    position: absolute;
+    right: 0;
+    background-color: var(--fc-gray);
+    padding: 1rem;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
 
 .form-btn {
@@ -40,4 +61,12 @@ select {
 
 .form-btn:hover {
     background-color: hsl(258, 90%, 60%);
+}
+
+.cancel-btn {
+    background-color: var(--alert-red);
+}
+
+.cancel-btn:hover {
+    background-color: hsl(0, 84%, 50%);
 }

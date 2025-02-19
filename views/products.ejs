@@ -2,6 +2,7 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/forms.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +27,7 @@
             <th>In Stock</th>
             <th>Unit Price</th>
             <th>Added</th>
+            <th></th>
           </thead>
           <tbody>
             <% for( let n = 1; n <= products.length; n++ ) { %>
@@ -39,6 +41,36 @@
               <td><%= products[n - 1]['in_stock'] %></td>
               <td><%= products[n - 1]['unit_price'] %></td>
               <td><%= products[n - 1].added %></td>
+              <td>
+                <div class="update">
+                  <button
+                    class="edit-btn"
+                    data-edit="<%=  products[n - 1].id %>"
+                  >
+                    Edit
+                  </button>
+                  <form
+                    action="/product/delete/<%= products[n - 1].id %>"
+                    method="POST"
+                  >
+                    <button class="delete-btn">
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                        >
+                          <title>delete</title>
+                          <path
+                            d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </form>
+                  <%- include('editProduct', {product: products[n-1],
+                  categories}) %>
+                </div>
+              </td>
             </tr>
             <% } %>
           </tbody>
@@ -51,6 +83,10 @@
     <script>
       const inventoryDropdown = document.getElementById("inventory-dropdown");
       const ordersDropdown = document.getElementById("orders-dropdown");
+      const editBtns = document.querySelectorAll(".edit-btn");
+      const editForms = document.querySelectorAll(".edit-product");
+      const cancelBtns = document.querySelectorAll(".cancel-btn");
+
       const toggleDropdown = (e) => {
         if (!e.target.dataset.dropitem) return;
         const list = document.getElementById(e.target.dataset.dropitem);
@@ -60,6 +96,23 @@
 
       inventoryDropdown.addEventListener("click", toggleDropdown);
       ordersDropdown.addEventListener("click", toggleDropdown);
+
+      editBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (!btn.dataset.edit) return;
+          editForms.forEach((form) => form.classList.toggle("hide", true));
+          const editForm = document.getElementById(`edit-${btn.dataset.edit}`);
+          editForm.classList.toggle("hide", false);
+        });
+      });
+
+      cancelBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (!btn.dataset.edit) return;
+          const editForm = document.getElementById(`edit-${btn.dataset.edit}`);
+          editForm.classList.toggle("hide", true);
+        });
+      });
     </script>
   </body>
 </html>

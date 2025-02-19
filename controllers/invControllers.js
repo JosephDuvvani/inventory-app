@@ -2,6 +2,8 @@ import { format } from "date-fns";
 import {
   addNewProduct,
   createCategory,
+  deleteProduct,
+  editProduct,
   getAllCategories,
   getAllProducts,
   getCategoryName,
@@ -49,6 +51,7 @@ const categoryProductsGet = async (req, res) => {
 
 const allProductsGet = async (req, res) => {
   const all = await getAllProducts();
+  const categories = await getAllCategories();
   const products = all.map((product) => ({
     ...product,
     added: format(product.added, "yyyy-MM-dd"),
@@ -56,6 +59,7 @@ const allProductsGet = async (req, res) => {
   res.render("products", {
     title: "ALL PRODUCTS",
     products,
+    categories,
   });
 };
 
@@ -75,6 +79,19 @@ const newCategoryPost = async (req, res) => {
   res.redirect("/categories");
 };
 
+const editProductPost = async (req, res) => {
+  const data = req.body;
+  const { id } = req.params;
+  await editProduct(id, data);
+  res.redirect("/products");
+};
+
+const deleteProductPost = async (req, res) => {
+  const { id } = req.params;
+  await deleteProduct(id);
+  res.redirect("/products");
+};
+
 export {
   productCategoriesGet,
   categoryProductsGet,
@@ -83,4 +100,6 @@ export {
   newProductPost,
   allCategoriesGet,
   newCategoryPost,
+  editProductPost,
+  deleteProductPost,
 };
