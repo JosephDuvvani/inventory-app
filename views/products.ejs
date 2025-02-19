@@ -15,7 +15,7 @@
       <%- include('sidebar') %>
       <main class="pad-r-1">
         <h1 class="page-title"><%= title %></h1>
-        <% if (locals.products) { %>
+        <% if (locals.products && products.length>0) { %>
         <table class="table_dashbrd table-bg-light table-container">
           <thead>
             <th>#</th>
@@ -27,7 +27,9 @@
             <th>In Stock</th>
             <th>Unit Price</th>
             <th>Added</th>
+            <% if (products[0].category) { %>
             <th></th>
+            <% } %>
           </thead>
           <tbody>
             <% for( let n = 1; n <= products.length; n++ ) { %>
@@ -41,6 +43,7 @@
               <td><%= products[n - 1]['in_stock'] %></td>
               <td><%= products[n - 1]['unit_price'] %></td>
               <td><%= products[n - 1].added %></td>
+              <% if (products[0].category) { %>
               <td>
                 <div class="update">
                   <button
@@ -71,6 +74,7 @@
                   categories}) %>
                 </div>
               </td>
+              <% } %>
             </tr>
             <% } %>
           </tbody>
