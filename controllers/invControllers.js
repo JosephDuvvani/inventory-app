@@ -70,12 +70,23 @@ const newProductGet = async (req, res) => {
 
 const newProductPost = async (req, res) => {
   const data = req.body;
+  if (data.password !== process.env.ADMIN_PASSWORD) {
+    console.log("Wrong password!");
+    res.redirect(req.get("referer"));
+    return;
+  }
   await addNewProduct(data);
   res.redirect("/");
 };
 
 const newCategoryPost = async (req, res) => {
-  await createCategory(req.body);
+  const data = req.body;
+  if (data.password !== process.env.ADMIN_PASSWORD) {
+    console.log("Wrong password!");
+    res.redirect(req.get("referer"));
+    return;
+  }
+  await createCategory(data);
   res.redirect("/categories");
 };
 
@@ -83,6 +94,7 @@ const editProductPost = async (req, res) => {
   const data = req.body;
   if (data.password !== process.env.ADMIN_PASSWORD) {
     console.log("Wrong password!");
+    res.redirect(req.get("referer"));
     return;
   }
   const { id } = req.params;
