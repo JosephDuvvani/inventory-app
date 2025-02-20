@@ -19,25 +19,19 @@
           <form action="/add/product" method="POST" class="new-product">
             <label for="name">
               Product Name:
-              <input
-                type="text"
-                name="name"
-                id="name"
-                autocomplete="off"
-                required
-              />
+              <input type="text" name="name" autocomplete="off" required />
             </label>
             <label for="quantity">
               Quantity:
-              <input type="number" name="quantity" id="quantity" required />
+              <input type="number" name="quantity" required />
             </label>
             <label for="price">
-              Price: <input type="number" name="price" id="price" required />
+              Price: <input type="number" name="price" required />
             </label>
             <% if (locals.categories) { %>
             <label for="category">
               Categories:
-              <select name="category" id="category">
+              <select name="category">
                 <% for (let category of categories){ %>
                 <option value="<%= category.id %>"><%= category.name %></option>
                 <% } %>

@@ -16,7 +16,7 @@
     <% if (locals.categories) { %>
     <label for="category">
       Categories:
-      <select name="category" id="category">
+      <select name="category">
         <% for (let category of categories){ %> <% if (category.name ==
         product.category) { %>
         <option value="<%= category.id %>" selected>
@@ -33,7 +33,6 @@
       <input
         type="number"
         name="quantity"
-        id="quantity"
         value="<%= product['in_stock'] %>"
         required
       />
@@ -43,7 +42,6 @@
       <input
         type="number"
         name="price"
-        id="price"
         value="<%= product['unit_price'] %>"
         required
       />
