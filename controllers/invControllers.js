@@ -81,6 +81,10 @@ const newCategoryPost = async (req, res) => {
 
 const editProductPost = async (req, res) => {
   const data = req.body;
+  if (data.password !== process.env.ADMIN_PASSWORD) {
+    console.log("Wrong password!");
+    return;
+  }
   const { id } = req.params;
   await editProduct(id, data);
   res.redirect("/products");

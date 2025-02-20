@@ -1,7 +1,7 @@
 <% if (locals.product) { %>
 <div class="edit-product hide" id="edit-<%= product.id %>">
   <form action="/product/edit/<%= product.id %>" method="POST">
-    <label>
+    <label class="row-span">
       Product Name:
       <input type="text" name="name" value="<%= product.name %>" />
     </label>
@@ -48,7 +48,11 @@
         required
       />
     </label>
-    <div class="form-btns">
+    <label class="row-span">
+      Password *
+      <input type="password" name="password" placeholder="Admin Password" />
+    </label>
+    <div class="form-btns row-span">
       <button class="form-btn">Save</button>
       <button
         type="button"

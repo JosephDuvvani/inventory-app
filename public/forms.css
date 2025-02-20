@@ -2,6 +2,10 @@ button {
     cursor: pointer;
 }
 
+.row-span {
+    grid-column: 1/-1;
+}
+
 .new-product {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -32,13 +36,19 @@ select:focus {
     border: 2px solid var(--neon-purple);
 }
 
-.edit-product {
+.edit-product {  
     position: absolute;
     right: 0;
     background-color: var(--fc-gray);
     padding: 1rem;
     z-index: 1;
     border-radius: 4px;
+}
+
+.edit-product form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
 }
 
 .form-btns {
